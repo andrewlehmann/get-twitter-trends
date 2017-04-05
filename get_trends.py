@@ -2,7 +2,7 @@ import tweepy
 import keyring
 
 # Set all keys
-consumer_key = keyring.get_password('Twitter', 'ConsumerKey') #'kTKrup9MEEYYIaGFXIH09d4dT'
+consumer_key = keyring.get_password('Twitter', 'ConsumerKey')
 secret_key = keyring.get_password('Twitter', 'ConsumerSecret')
 access_token = keyring.get_password('Twitter', 'AccessToken')
 access_token_secret =  keyring.get_password('Twitter', 'AccessSecret')
@@ -11,9 +11,9 @@ access_token_secret =  keyring.get_password('Twitter', 'AccessSecret')
 auth = tweepy.OAuthHandler(consumer_key, secret_key)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
-trends = api.trends_place(1)
 
 # Retrieve trend data
+trends = api.trends_place(1)
 data = trends[0]
 trends = data['trends']
 
