@@ -12,15 +12,11 @@ auth = tweepy.OAuthHandler(consumer_key, secret_key)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-# Retrieve trend data
-trends = api.trends_place(1)
-data = trends[0]
-trends = data['trends']
+# Retrieve trend data as a list, use 1 to get global trends
+trends = api.trends_place(1)[0]['trends']
 
-# Create list of trend names and print
-names = []
+# Create list of trend names, then print
+names = [trend['name'] for trend in trends]
 
-for trend in trends:
-	names.append(trend['name'])
-for entry in range(10):
-	print(names[entry])
+for name in names:
+	print(name)
