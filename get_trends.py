@@ -3,13 +3,13 @@ import keyring
 
 # Set all keys
 consumer_key = keyring.get_password('Twitter', 'ConsumerKey')
-secret_key = keyring.get_password('Twitter', 'ConsumerSecret')
+consumer_secret = keyring.get_password('Twitter', 'ConsumerSecret')
 access_token = keyring.get_password('Twitter', 'AccessToken')
-access_token_secret =  keyring.get_password('Twitter', 'AccessSecret')
+access_secret =  keyring.get_password('Twitter', 'AccessSecret')
 
 # Connect to Twitter API
-auth = tweepy.OAuthHandler(consumer_key, secret_key)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
 # Retrieve trend data as a list, use 1 to get global trends
