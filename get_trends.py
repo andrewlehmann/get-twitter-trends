@@ -1,7 +1,9 @@
 import tweepy
 import keyring
 
-# Set all keys
+# Set all access keys for Twitter API
+# keyring is a python package that one can use to retrieve
+# a previously saved password so as to mask my API keys
 consumer_key = keyring.get_password('Twitter', 'ConsumerKey')
 consumer_secret = keyring.get_password('Twitter', 'ConsumerSecret')
 access_token = keyring.get_password('Twitter', 'AccessToken')
@@ -12,11 +14,8 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
-# Retrieve trend data as a list, use 1 to get global trends
+# Retrieve trend data as a list, use parameter 1 for global trends
 trends = api.trends_place(1)[0]['trends']
 
-# Create list of trend names, then print
-names = [trend['name'] for trend in trends]
-
-for name in names:
-	print(name)
+# Create and print list of names of top 50 current trends
+print([trend['name'] for trend in trends])
